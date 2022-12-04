@@ -28,9 +28,9 @@ func main() {
 		range20, _ := strconv.Atoi(range2[0])
 		range11, _ := strconv.Atoi(range1[1])
 		range21, _ := strconv.Atoi(range2[1])
-
-		if (range10 >= range20 && range11 <= range21) ||
-			(range20 >= range10 && range21 <= range11) {
+		// [range10, range11] [range20, range21]
+		if (range11 <= range21 && range10 >= range20) ||
+			(range20 <= range11 && range21 >= range10) {
 			i++
 		}
 	}
