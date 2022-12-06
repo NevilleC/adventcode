@@ -38,15 +38,12 @@ func main() {
 			i++
 		}
 
-		if !buildStack {
+		if !buildStack && textLine != " 1   2   3   4   5   6   7   8   9 " {
 			var move, from, to int
 			fmt.Sscanf(textLine, "move %d from %d to %d", &move, &from, &to)
-			j := 0
-			for j < move && move > 0 {
-				stacks[to-1] = append(stacks[to-1], stacks[from-1][len(stacks[from-1])-1])
-				stacks[from-1] = stacks[from-1][:len(stacks[from-1])-1]
-				j++
-			}
+			lenFrom := len(stacks[from-1])
+			stacks[to-1] = append(stacks[to-1], stacks[from-1][lenFrom-move:lenFrom]...)
+			stacks[from-1] = stacks[from-1][:lenFrom-move]
 		}
 	}
 
